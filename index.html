@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Москвич — Сезон 1</title>
+  <script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=NAahhUaJchfR1QtFneSKyNIFF5viBaz2Je95yvHG2762PUwN7lkZhBNHng58iFof2eMmHMpKkXSDAg1QFcunv7ld6PNb3IWvxBbLdUIdBhyG6nXgOYqT29jRIleKAoROKuho8aBEOuA1gxuZnpWME5FTqW00XMU97qBPNviPJ7g-5oevrooAVNPJ5ISrEDgJ0DxqEbozdCtdns7vDKpL3mGpI8zGBNnOXcduVzDmM-SxUcFzJDS2rBdqPYbGuLul5_-xLDV1dp3zQ44RVqmHqw" charset="UTF-8"></script><style>
+    :root {
+      --bg: #111315;
+      --panel: #1a1d20;
+      --panel-2: #22262a;
+      --text: #f2f2f2;
+      --muted: #a8adb3;
+      --accent: #d34b3f;
+      --line: #32373d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    .hero {
+      padding: 56px 20px 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at top, rgba(211, 75, 63, 0.15), transparent 45%),
+        var(--bg);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(34px, 6vw, 64px);
+      letter-spacing: 1px;
+    }
+
+    .hero p {
+      margin: 0 auto;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .season-badge {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 12px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      color: #ffb1aa;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 60px;
+    }
+
+    .main-player {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(0,0,0,.25);
+    }
+
+    .main-player video {
+      display: block;
+      width: 100%;
+      max-height: 70vh;
+      background: #000;
+    }
+
+    .main-info {
+      padding: 22px 24px 25px;
+    }
+
+    .main-info h2 {
+      margin: 0 0 7px;
+      font-size: 26px;
+    }
+
+    .main-info p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .episodes-title {
+      margin: 40px 0 18px;
+      font-size: 28px;
+    }
+
+    .episodes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .episode {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .episode:hover {
+      transform: translateY(-3px);
+      border-color: #555d65;
+      background: var(--panel-2);
+    }
+
+    .episode.active {
+      border-color: var(--accent);
+    }
+
+    .thumb {
+      aspect-ratio: 16 / 9;
+      background:
+        linear-gradient(135deg, rgba(211,75,63,.25), rgba(0,0,0,.2)),
+        #24282c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      color: rgba(255,255,255,.8);
+    }
+
+    .episode-body {
+      padding: 16px 17px 18px;
+    }
+
+    .episode-number {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .episode h3 {
+      margin: 5px 0 7px;
+      font-size: 18px;
+    }
+
+    .episode p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 26px 20px 40px;
+      color: #737980;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .episodes {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 38px;
+      }
+
+      .episodes {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        width: min(100% - 20px, 1180px);
+      }
+
+      .main-info {
+        padding: 18px;
+      }
+
+      .main-info h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="season-badge">Сезон 1</div>
+  <h1>Москвич</h1>
+  <p>
+    Первый сезон проекта по модернизации Москвича:
+    ремонт, доработки, эксперименты и постепенное превращение старого автомобиля
+    в машину, которой хочется пользоваться.
+  </p>
+</header>
+
+<main class="container">
+
+  <section class="main-player">
+    <video id="player" controls preload="metadata">
+      <source id="videoSource" src="1_1.mp4" type="video/mp4">
+      Ваш браузер не поддерживает воспроизведение видео.
+    </video>
+
+    <div class="main-info">
+      <h2 id="currentTitle">Серия 1. Начало проекта</h2>
+      <p id="currentDescription">
+        Выбор, покупка и первые километры.
+      </p>
+    </div>
+  </section>
+
+  <h2 class="episodes-title">Все серии</h2>
+
+  <section class="episodes" id="episodeList">
+
+    <article class="episode active"
+      data-video="1_1.mp4"
+      data-title="Серия 1. Начало проекта"
+      data-description="Выбор, покупка и первые километры.">
+      <div class="thumb">▶</div>
+      <div class="episode-body">
+        <div class="episode-number">Серия 1</div>
+        <h3>Начало проекта</h3>
+        <p>Выбор, покупка и первые километры.</p>
+      </div>
+    </article>
+
+    <article class="episode"
+      data-video="1_2.mp4"
+      data-title="Серия 2. Разбор"
+      data-description="Разбор автомобился для кузовных работ.">
+      <div class="thumb">▶</div>
+      <div class="episode-body">
+        <div class="episode-number">Серия 2</div>
+        <h3>Разбор</h3>
+        <p>Разбор автомобился для кузовных работ.</p>
+      </div>
+    </article>
+
+    <article class="episode"
+      data-video="1_3.mp4"
+      data-title="Серия 3. Пескоструй"
+      data-description="Очистка ржи пескоструем.">
+      <div class="thumb">▶</div>
+      <div class="episode-body">
+        <div class="episode-number">Серия 3</div>
+        <h3>Пескоструй</h3>
+        <p>Очистка ржи пескоструем.</p>
+      </div>
+    </article>
+
+    <article class="episode"
+      data-video="1_4.mp4"
+      data-title="Серия 4. Сварка"
+      data-description="Ремонт и усиление кузова.">
+      <div class="thumb">▶</div>
+      <div class="episode-body">
+        <div class="episode-number">Серия 4</div>
+        <h3>Сварка</h3>
+        <p>Ремонт и усиление кузова.</p>
+      </div>
+    </article>
+
+    <article class="episode"
+      data-video="1_5.mp4"
+      data-title="Серия 5. Донор"
+      data-description="Покупка, пробег и разбор.">
+      <div class="thumb">▶</div>
+      <div class="episode-body">
+        <div class="episode-number">Серия 5</div>
+        <h3>Донор</h3>
+        <p>Покупка, пробег и разбор.</p>
+      </div>
+    </article>
+
+    <article class="episode"
+      data-video="1_6.mp4"
+      data-title="Серия 6. Двигатель"
+      data-description="Подготовка и внедрение в кузов.">
+      <div class="thumb">▶</div>
+      <div class="episode-body">
+        <div class="episode-number">Серия 6</div>
+        <h3>Двигатель</h3>
+        <p>Подготовка и внедрение в кузов.</p>
+      </div>
+    </article>
+	
+	<article class="episode"
+      data-video="1_7.mp4"
+      data-title="Серия 7. Туннель"
+      data-description="Срез с донора и установка в 407ой.">
+      <div class="thumb">▶</div>
+      <div class="episode-body">
+        <div class="episode-number">Серия 7</div>
+        <h3>Туннель</h3>
+        <p>Срез с донора и установка в 407ой.</p>
+      </div>
+    </article>
+
+    <article class="episode"
+      data-video="1_8.mp4"
+      data-title="Серия 8. Педали"
+      data-description="Установка педального узла и сидений.">
+      <div class="thumb">▶</div>
+      <div class="episode-body">
+        <div class="episode-number">Серия 8</div>
+        <h3>Педали</h3>
+        <p>Установка педального узла и сидений.</p>
+      </div>
+    </article>
+
+	<article class="episode"
+      data-video="1_9.mp4"
+      data-title="Серия 9. Грунтовка"
+      data-description="Подготовки, грунтовка и антикор днища.">
+      <div class="thumb">▶</div>
+      <div class="episode-body">
+        <div class="episode-number">Серия 9</div>
+        <h3>Грунтовка</h3>
+        <p>Подготовки, грунтовка и антикор днища.</p>
+      </div>
+    </article>
+
+    <article class="episode"
+      data-video="1_10.mp4"
+      data-title="Серия 10. Финал сезона"
+      data-description="Установка двигателя и трансмисии, выезд из бокса.">
+      <div class="thumb">▶</div>
+      <div class="episode-body">
+        <div class="episode-number">Серия 10</div>
+        <h3>Финал сезона. Выезд из бокса.</h3>
+        <p>Установка двигателя и трансмисии, выезд из бокса.</p>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer>
+  Москвич — проект модернизации автомобиля
+</footer>
+
+<script>
+  const player = document.getElementById('player');
+  const source = document.getElementById('videoSource');
+  const title = document.getElementById('currentTitle');
+  const description = document.getElementById('currentDescription');
+  const episodes = document.querySelectorAll('.episode');
+
+  episodes.forEach(episode => {
+    episode.addEventListener('click', () => {
+      episodes.forEach(item => item.classList.remove('active'));
+      episode.classList.add('active');
+
+      source.src = episode.dataset.video;
+      title.textContent = episode.dataset.title;
+      description.textContent = episode.dataset.description;
+
+      player.load();
+      player.play().catch(() => {});
+      player.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
