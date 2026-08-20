@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Москвич — Сезон 1</title>
-  <script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=NAahhUaJchfR1QtFneSKyNIFF5viBaz2Je95yvHG2762PUwN7lkZhBNHng58iFof2eMmHMpKkXSDAg1QFcunv7ld6PNb3IWvxBbLdUIdBhyG6nXgOYqT29jRIleKAoROKuho8aBEOuA1gxuZnpWME5FTqW00XMU97qBPNviPJ7g-5oevrooAVNPJ5ISrEDgJ0DxqEbozdCtdns7vDKpL3mGpI8zGBNnOXcduVzDmM-SxUcFzJDS2rBdqPYbGuLul5_-xLDV1dp3zQ44RVqmHqw" charset="UTF-8"></script><style>
+  <script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=uHLivZrSVOuTB4iPL8DPszB0iWyDW65fXfLrMdt84Wx1yxSKEebZkwTl_WXPfKkcBJc8-huX3q5YC0zbg1kLd9Pht9LdMVlZhyd507cZw56I9wZr3jBKkPXvgCMIdHoFBnjJiMfyPzDGR-ipBWnKWbe_cUiFyLKNG479MNNZbgBjLLYqZd6DCvXaR7p9ExErdAVJLG9mRqs1vwcNHMSjKyvQOXzKOAFNkMDKEmJOEfLOVbuyttD6DYMAd2dclMqW1n-fTOR_L8vu9OVQkYobbw" charset="UTF-8"></script><style>
     :root {
       --bg: #111315;
       --panel: #1a1d20;
@@ -75,7 +75,7 @@
       box-shadow: 0 18px 45px rgba(0,0,0,.25);
     }
 
-    .main-player video {
+    .main-player iframe {
       display: block;
       width: 100%;
       max-height: 70vh;
@@ -126,18 +126,6 @@
       border-color: var(--accent);
     }
 
-    .thumb {
-      aspect-ratio: 16 / 9;
-      background:
-        linear-gradient(135deg, rgba(211,75,63,.25), rgba(0,0,0,.2)),
-        #24282c;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 42px;
-      color: rgba(255,255,255,.8);
-    }
-
     .episode-body {
       padding: 16px 17px 18px;
     }
@@ -159,6 +147,37 @@
       margin: 0;
       color: var(--muted);
       font-size: 14px;
+    }
+
+
+    .thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #24282c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+
+    .play-icon {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 42px;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,.8);
+      pointer-events: none;
     }
 
     footer {
@@ -194,7 +213,7 @@
       .main-info h2 {
         font-size: 22px;
       }
-    }
+}
   </style>
 </head>
 <body>
@@ -212,10 +231,14 @@
 <main class="container">
 
   <section class="main-player">
-    <video id="player" controls preload="metadata">
-      <source id="videoSource" src="1_1.mp4" type="video/mp4">
-      Ваш браузер не поддерживает воспроизведение видео.
-    </video>
+    <iframe
+      id="player"
+      src="https://drive.google.com/file/d/1aone2roNqns9mxFGP0_CrcYs3RSFNGNNZRiE8sf9-EE/preview"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+      loading="eager"
+      style="display:block;width:100%;height:min(70vh,720px);border:0;background:#000;">
+    </iframe>
 
     <div class="main-info">
       <h2 id="currentTitle">Серия 1. Начало проекта</h2>
@@ -230,10 +253,13 @@
   <section class="episodes" id="episodeList">
 
     <article class="episode active"
-      data-video="1_1.mp4"
+      data-video="1B1cNp38WTttpJXOHpa97eRssjhmv8Vnf"
       data-title="Серия 1. Начало проекта"
       data-description="Выбор, покупка и первые километры.">
-      <div class="thumb">▶</div>
+      <div class="thumb">
+		<img src="images/1_1.jpg" alt="Серия 1">
+		<span class="play-icon">▶</span>
+	  </div>
       <div class="episode-body">
         <div class="episode-number">Серия 1</div>
         <h3>Начало проекта</h3>
@@ -242,22 +268,28 @@
     </article>
 
     <article class="episode"
-      data-video="1_2.mp4"
+      data-video="1qKbrk17uqfoQVbbTgWlAGHnLkm4B5Qp-"
       data-title="Серия 2. Разбор"
-      data-description="Разбор автомобился для кузовных работ.">
-      <div class="thumb">▶</div>
+      data-description="Разбор автомобиля для кузовных работ.">
+      <div class="thumb">
+		<img src="images/1_2.jpg" alt="Серия 2">
+		<span class="play-icon">▶</span>
+	  </div>
       <div class="episode-body">
         <div class="episode-number">Серия 2</div>
         <h3>Разбор</h3>
-        <p>Разбор автомобился для кузовных работ.</p>
+        <p>Разбор автомобиля для кузовных работ.</p>
       </div>
     </article>
 
     <article class="episode"
-      data-video="1_3.mp4"
+      data-video="1wazxv84Qp2c62DeoAdI-Y-V5Hg7dpkjJ"
       data-title="Серия 3. Пескоструй"
       data-description="Очистка ржи пескоструем.">
-      <div class="thumb">▶</div>
+      <div class="thumb">
+    <img src="images/1_3.jpg" alt="Серия 3">
+    <span class="play-icon">▶</span>
+</div>
       <div class="episode-body">
         <div class="episode-number">Серия 3</div>
         <h3>Пескоструй</h3>
@@ -266,10 +298,13 @@
     </article>
 
     <article class="episode"
-      data-video="1_4.mp4"
+      data-video="1yJIvFHwngm_AZlLwNX58fXXkIN4z3hpe"
       data-title="Серия 4. Сварка"
       data-description="Ремонт и усиление кузова.">
-      <div class="thumb">▶</div>
+      <div class="thumb">
+    <img src="images/1_4.jpg" alt="Серия 4">
+    <span class="play-icon">▶</span>
+</div>
       <div class="episode-body">
         <div class="episode-number">Серия 4</div>
         <h3>Сварка</h3>
@@ -278,10 +313,13 @@
     </article>
 
     <article class="episode"
-      data-video="1_5.mp4"
+      data-video="16-WBpWQcQH6JIn_MralHHcTtv_nsAono"
       data-title="Серия 5. Донор"
       data-description="Покупка, пробег и разбор.">
-      <div class="thumb">▶</div>
+      <div class="thumb">
+    <img src="images/1_5.jpg" alt="Серия 5">
+    <span class="play-icon">▶</span>
+</div>
       <div class="episode-body">
         <div class="episode-number">Серия 5</div>
         <h3>Донор</h3>
@@ -290,10 +328,13 @@
     </article>
 
     <article class="episode"
-      data-video="1_6.mp4"
+      data-video="1Qi0VWFJPE4TG0y4szqHTUfJGFBtmv9ns"
       data-title="Серия 6. Двигатель"
       data-description="Подготовка и внедрение в кузов.">
-      <div class="thumb">▶</div>
+      <div class="thumb">
+    <img src="images/1_6.jpg" alt="Серия 6">
+    <span class="play-icon">▶</span>
+</div>
       <div class="episode-body">
         <div class="episode-number">Серия 6</div>
         <h3>Двигатель</h3>
@@ -302,10 +343,13 @@
     </article>
 	
 	<article class="episode"
-      data-video="1_7.mp4"
+      data-video="1Yi0Knm-FGtLyz-UaYnGtnGOJzwUTnfjp"
       data-title="Серия 7. Туннель"
       data-description="Срез с донора и установка в 407ой.">
-      <div class="thumb">▶</div>
+      <div class="thumb">
+    <img src="images/1_7.jpg" alt="Серия 7">
+    <span class="play-icon">▶</span>
+</div>
       <div class="episode-body">
         <div class="episode-number">Серия 7</div>
         <h3>Туннель</h3>
@@ -314,10 +358,13 @@
     </article>
 
     <article class="episode"
-      data-video="1_8.mp4"
+      data-video="1lpirOygigVuBTAmaKT_85HjNkurWMVCj"
       data-title="Серия 8. Педали"
       data-description="Установка педального узла и сидений.">
-      <div class="thumb">▶</div>
+      <div class="thumb">
+    <img src="images/1_8.jpg" alt="Серия 8">
+    <span class="play-icon">▶</span>
+</div>
       <div class="episode-body">
         <div class="episode-number">Серия 8</div>
         <h3>Педали</h3>
@@ -326,26 +373,32 @@
     </article>
 
 	<article class="episode"
-      data-video="1_9.mp4"
+      data-video="1s-lUO5GePt4PGxh9b7_ENRQyQaNPCXHc"
       data-title="Серия 9. Грунтовка"
-      data-description="Подготовки, грунтовка и антикор днища.">
-      <div class="thumb">▶</div>
+      data-description="Подготовка, грунтовка и антикор днища.">
+      <div class="thumb">
+    <img src="images/1_9.jpg" alt="Серия 9">
+    <span class="play-icon">▶</span>
+</div>
       <div class="episode-body">
         <div class="episode-number">Серия 9</div>
         <h3>Грунтовка</h3>
-        <p>Подготовки, грунтовка и антикор днища.</p>
+        <p>Подготовка, грунтовка и антикор днища.</p>
       </div>
     </article>
 
     <article class="episode"
-      data-video="1_10.mp4"
+      data-video="1uZ1Ebm8-o9x84q59eplC3V1FriNDk_Tr"
       data-title="Серия 10. Финал сезона"
-      data-description="Установка двигателя и трансмисии, выезд из бокса.">
-      <div class="thumb">▶</div>
+      data-description="Установка двигателя и трансмиссии, выезд из бокса.">
+      <div class="thumb">
+    <img src="images/1_10.jpg" alt="Серия 10">
+    <span class="play-icon">▶</span>
+</div>
       <div class="episode-body">
         <div class="episode-number">Серия 10</div>
         <h3>Финал сезона. Выезд из бокса.</h3>
-        <p>Установка двигателя и трансмисии, выезд из бокса.</p>
+        <p>Установка двигателя и трансмиссии, выезд из бокса.</p>
       </div>
     </article>
   </section>
@@ -357,7 +410,6 @@
 
 <script>
   const player = document.getElementById('player');
-  const source = document.getElementById('videoSource');
   const title = document.getElementById('currentTitle');
   const description = document.getElementById('currentDescription');
   const episodes = document.querySelectorAll('.episode');
@@ -367,12 +419,13 @@
       episodes.forEach(item => item.classList.remove('active'));
       episode.classList.add('active');
 
-      source.src = episode.dataset.video;
+      player.src =
+        'https://drive.google.com/file/d/' +
+        episode.dataset.video +
+        '/preview';
+
       title.textContent = episode.dataset.title;
       description.textContent = episode.dataset.description;
-
-      player.load();
-      player.play().catch(() => {});
       player.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
